@@ -1,0 +1,19 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Product Detail - Art Store{% endblock %}
+
+{% block content %}
+<h2>{{ product.name }}</h2>
+<img src="{% static product.image_url %}" alt="{{ product.name }}" style="width:300px;height:auto;">
+<p><strong>Description:</strong> {{ product.description }}</p>
+<p><strong>Price:</strong> ${{ product.price }}</p>
+
+<!-- Add to Cart Button -->
+<form method="post" action="{% url 'add_to_cart' product.id %}">
+    {% csrf_token %}
+    <button type="submit">Add to Cart</button>
+</form>
+
+<!-- Link to go back to the product listing -->
+<p><a href="{% url 'index' %}">Back to Products</a></p>
+{% endblock %}
